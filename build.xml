@@ -65,8 +65,15 @@
 	  	<ivy:retrieve pattern="${ivylibs}/[artifact](-[classifier])-[revision].jar" type="jar" conf="appdep"/>
 	</target>
 
-	<target name="jetty" depends="prep" >
+	<target name="jetty-found" >
+		<available file="${jetty}/jetty-runner.jar"  property="jetty.found"/>
+	</target>
+	
+	<target name="jetty-download" unless="jetty.found">
 	  	<get dest="${jetty}/jetty-runner.jar" src="http://repo2.maven.org/maven2/org/mortbay/jetty/jetty-runner/8.1.9.v20130131/jetty-runner-8.1.9.v20130131.jar"/>
+	</target>
+	
+	<target name="jetty" depends="prep,jetty-found,jetty-download" >
 	  	<ivy:retrieve pattern="${whlibs}/[artifact](-[classifier])-[revision].jar" type="jar" conf="build"/>
 		<copy file="web.xml" todir="${webinf}">
 		</copy>
@@ -74,6 +81,15 @@
 
 	<target name="run" >
 		<exec executable="java">
+			<arg value="-jar"/>
+			<arg value="jetty/jetty-runner.jar"/>
+			<arg value="."/>
+		</exec>
+	</target>
+
+	<target name="debug" >
+		<exec executable="java">
+			<arg value="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000"/>
 			<arg value="-jar"/>
 			<arg value="jetty/jetty-runner.jar"/>
 			<arg value="."/>
