@@ -1,0 +1,8 @@
+__::header__
+
+<div class="edit-content-inline" data-input-identifier="#section1">
+	<h1>Your Title Goes Here</h1>
+	
+	<p>Your page content goes here</p>
+</div>
+__::footer__

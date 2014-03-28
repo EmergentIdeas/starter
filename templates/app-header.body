@@ -1,0 +1,10 @@
+__::includes__
+__::app-includes__
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			__::app-menu__
+		</div>
+	</div>
+</nav>
+<div class="container">

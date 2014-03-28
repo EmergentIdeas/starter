@@ -101,6 +101,5 @@
 		<delete dir="${dist}"/>
 		<delete dir="${ivylibs}"/>
 		<delete dir="${whlibs}"/>
-		<delete dir="${jetty}"/>
 	</target>
 </project>

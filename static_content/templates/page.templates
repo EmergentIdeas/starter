@@ -1,0 +1,26 @@
+
+##test1##
+<div>
+	Name:
+	<br/>
+	__name__
+	<br/>
+	Comment:
+	<br/>
+	__comment__
+</div>
+
+##test2##
+<div>
+	<form id="testform" method="post" action="/testform" >
+		Name:
+		<br/>
+		<input name="name" type="text" />
+		<br/>
+		Comment:
+		<br/>
+		<textarea name="comment"></textarea>
+		<br/>
+		<button type="submit">Add</button>
+	</form>
+</div>

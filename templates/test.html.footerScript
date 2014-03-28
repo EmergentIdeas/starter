@@ -1,0 +1,24 @@
+// This is a little hacky. Ideally, we'd only be using the templated stuff in response to user
+// input, so the templates would have been loaded long since. For this test, I'm triggering the
+// templates right away, so I need to dance around the fact that they may not be loaded. The 
+// right way to do this would be to add it to the page-templates.js as part of the load handler.
+
+function templatesOnPageLoad() {
+	var dat = {name: 'Dan', comment: 'You should see the name "Dan".'};
+	$('#t1').append(test1(dat));
+	$('#t2').append(test2(dat));
+	$('#t2').binddata(dat);
+}
+
+var keys = [];
+for(var k in Tripartite.templates) keys.push(k);
+if(keys.length > 1) {
+	// The templates have been loaded
+	templatesOnPageLoad();
+}
+else {
+	// we'll set call when the templates get loaded
+	Tripartite.onTemplatesLoaded = templatesOnPageLoad;
+}
+
+
