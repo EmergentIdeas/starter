@@ -1,10 +1,12 @@
 __::includes__
-<nav class="navbar navbar-default" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			__::menu__
-		</div>
-	</div>
-</nav>
+__pageIsEditable::page-editor/editable__
+<header class="navbar navbar-default" role="navigation">
+        <div class="container">
+                <div class="navbar-header"><a class="navbar-brand">Starter</a></div>
+                <div class="nav">
+                        __::menu__
+                </div>
+        </div>
+</header>
 <div class="container">
 

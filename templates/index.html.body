@@ -1,5 +1,6 @@
 __::header__
-
+<div class="edit-content-inline" data-input-identifier="#section1">
 <h1>Welcome!</h1>
+</div>
 
 __::footer__
