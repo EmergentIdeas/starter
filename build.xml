@@ -74,13 +74,21 @@
 	</target>
 	
 	<target name="jetty" depends="prep,jetty-found,jetty-download" >
-	  	<ivy:retrieve pattern="${whlibs}/[artifact](-[classifier])-[revision].jar" type="jar" conf="build"/>
-	        <ivy:retrieve pattern="${whlibs}/[artifact](-[classifier])-[revision].jar" type="bundle" conf="build"/>
-
+	  	<ivy:retrieve pattern="webhandle.war" type="war" conf="war"/>
+		<unzip dest="." src="webhandle.war">
+		    <patternset>
+		        <include name="WEB-INF/lib/*"/>
+		    </patternset>
+		</unzip>	
 		<copy file="web.xml" todir="${webinf}">
 		</copy>
+		<delete file="webhandle.war"/>
 	</target>
 
+	<target name="dl-webhandle" >
+	  	<ivy:retrieve pattern="tmp/[artifact].[ext]" type="war" conf="war"/>
+	</target>
+	
 	<target name="run" >
 		<exec executable="java">
 			<arg value="-jar"/>

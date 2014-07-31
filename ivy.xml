@@ -4,11 +4,13 @@
 		<conf name="build" />
 		<conf name="deployment" />
 		<conf name="appdep" />
+		<conf name="war" />
 		<conf name="test" />
 		<conf name="jetty" />
 	</configurations>
 	<dependencies>
     	<dependency org="com.emergentideas" name="webhandle" rev="latest.integration" conf="build" />	
+    	<dependency org="com.emergentideas" name="webhandle" rev="latest.integration" conf="war" />	
 		<dependency org="com.emergentideas" name="oak_login" rev="1.0.0.8" conf="appdep" />
 		<dependency org="com.emergentideas" name="page-editor" rev="1.0.0.6" conf="appdep" />
 		<dependency org="com.emergentideas" name="tripartite-js" rev="1.0.0.1" conf="appdep" />
