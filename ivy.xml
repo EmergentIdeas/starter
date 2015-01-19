@@ -14,6 +14,10 @@
 		<dependency org="com.emergentideas" name="oak_login" rev="latest.integration" conf="appdep" />
 		<dependency org="com.emergentideas" name="page-editor" rev="latest.integration" conf="appdep" />
 		<dependency org="com.emergentideas" name="tripartite-js" rev="latest.integration" conf="appdep" />
+		
+		<dependency org="com.emergentideas" name="entity-class-tools" rev="latest.integration" conf="test->appdep" />
+		
+		
 		<dependency org="org.eclipse.jetty" name="jetty-runner" rev="latest.integration" conf="jetty->*"/>
 	</dependencies>
 </ivy-module>
