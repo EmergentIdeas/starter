@@ -117,6 +117,14 @@
                 <arg value="${static}/css/pages.less"/>
         </exec>
      </target>
+	<target name="backgrounds">
+		<exec executable="watch">
+            <arg value="-n"/>
+            <arg value="1"/>
+            <arg value="ant"/>
+            <arg value="lesscompile"/>
+		</exec>
+	</target>
 
 	<target name="run" >
 		<exec executable="java">
