@@ -89,16 +89,34 @@
 	  	<ivy:retrieve pattern="tmp/[artifact].[ext]" type="war" conf="war"/>
 	</target>
 	
-        <target name="lesstatus">
-                <uptodate property="notUpToDate" targetfile="${static}/css/pages.less" srcfile="${static}/css/pages.css"/>
-        </target>
-        <target name="lesscompile" depends="lesstatus" if="${notUpToDate}">
-
-                <echo message="About to build less file"/>
-                <exec executable="lessc" output="${static}/css/pages.css">
-                        <arg value="${static}/css/pages.less"/>
-                </exec>
-        </target>
+    <target name="lessstatus">
+    	<property name="upToDate" value="false" />
+        <uptodate property="upToDate" targetfile="${static}/css/pages.less">
+        	<srcfiles dir="${static}/css" includes="**/*.less"/>
+        </uptodate>
+    	<script language="javascript">
+    		<![CDATA[
+    	      	echo = project.createTask("echo");
+    	        echo.setMessage("test1");
+    	        echo.perform();
+    			upToDate = project.getProperty("upToDate");
+    			if("false".equals("" + upToDate)) {
+					project.setProperty("notUpToDate", true);
+    			}
+    			else {
+					project.setProperty("notUpToDate", false);
+    			}
+		        echo.setMessage("notUpToDate: " + project.getProperty("notUpToDate"));
+		        echo.perform();
+  		    ]]> 
+    	</script>
+    </target>
+    <target name="lesscompile" depends="lessstatus" if="${notUpToDate}">
+        <echo message="About to build less file"/>
+        <exec executable="lessc" output="${static}/css/pages.css">
+                <arg value="${static}/css/pages.less"/>
+        </exec>
+     </target>
 
 	<target name="run" >
 		<exec executable="java">

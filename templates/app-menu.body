@@ -1,1 +1,4 @@
-__::menu__
+<ul class="nav navbar-nav">
+	<li><a href="/menu">Admin</a></li>
+	<li><a href="/">Site</a></li>
+</ul>

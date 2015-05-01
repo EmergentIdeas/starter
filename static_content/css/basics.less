@@ -1,0 +1,111 @@
+.container {
+	width: @container-width;
+	margin: auto;
+	max-width: 100%;
+}
+
+.relative {
+	position: relative;
+}
+
+.bottom-right {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+.black-border {
+	border: solid 1px black;
+}
+
+.no-border {
+	border: none;
+}
+
+.side-by-side {
+	clear: both;
+	
+	.left, .right {
+		width: 50%;
+		box-sizing: border-box;
+		position: relative;
+		display: inline-block;
+	}
+	
+	.right {
+		padding-left: 7px;
+	}
+	
+	.left {
+		padding-right: 7px;
+	}
+	
+	h2, h3 {
+		text-align: center;
+	}
+	
+	.third {
+		display: inline-block;
+		width: 33%;
+		box-sizing: border-box;
+		padding-left: 10px;
+		padding-right: 10px;
+		
+		img {
+			width: 100%;
+			max-width: 100%;
+		}
+	}
+	
+	.two-third {
+		.third;
+		width: 66%;
+	}
+}
+
+.top-up {
+	vertical-align: top;
+}
+
+.mid-align {
+	vertical-align: middle;
+}
+
+.center {
+	text-align: center;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.half-width {
+	width: 50%;
+}
+
+.clear {
+	clear: both;
+}
+
+
+@media (max-width: @container-width) {
+	.only-desktop {
+		display: none;
+	}
+}
+
+@media (max-width: @tablet-width) {
+	.tablet-or-bigger {
+		display: none;
+	}
+}
+
+
