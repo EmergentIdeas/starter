@@ -95,6 +95,59 @@
 	clear: both;
 }
 
+.clear-inner {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+.smaller {
+    font-size: 75%;
+}
+
+.bigger {
+    font-size: 125%;
+}
+
+.menu-link {
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.link-inherit {
+	
+	a {
+		.menu-link;
+		font-size: inherit;
+		color: inherit;
+		font-weight: inherit;
+		line-height: inherit;
+		font-family: inherit;
+	}
+}
+
+.v-center {
+	position: absolute;
+	top: 50%;
+	.translateY(50%);
+}
+
+.v-h-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	.translate(-50%, -50%);
+}
+
+.background-color-fade(@color, @opamount) {
+    background-color: @color;
+    background-color: fade(@color, @opamount);
+}
+
 
 @media (max-width: @container-width) {
 	.only-desktop {
