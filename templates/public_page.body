@@ -1,5 +1,5 @@
 __::header__
-
-__::$contentArea__
-
+<div class="container">
+	__::$contentArea__
+</div>
 __::footer__

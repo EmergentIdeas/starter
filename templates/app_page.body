@@ -1,5 +1,5 @@
 __::app-header__
-
-__::$contentArea__
-
-__::footer__
+<div class="container">
+	__::$contentArea__
+</div>
+__::app-footer__

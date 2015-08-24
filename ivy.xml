@@ -16,7 +16,7 @@
 		<dependency org="com.emergentideas" name="tripartite-js" rev="latest.integration" conf="appdep" />
 		
 		<dependency org="com.emergentideas" name="entity-class-tools" rev="latest.integration" conf="test->appdep" />
-		
+		<dependency org="org.jsoup" name="jsoup" rev="1.8.1" conf="appdep->default" force="true"/>
 		
 		<dependency org="org.eclipse.jetty" name="jetty-runner" rev="latest.integration" conf="jetty->*"/>
 	</dependencies>

@@ -1,7 +1,15 @@
 .container {
-	width: @container-width;
-	margin: auto;
 	max-width: 100%;
+	margin: auto;
+	
+	padding-left: 10px;
+	padding-right: 10px;
+	
+	.desktop({
+		width: @container-width;
+		padding-left: 0;
+		padding-right: 0;
+	});
 }
 
 .relative {
@@ -68,6 +76,15 @@
 	.two-third {
 		.third;
 		width: 66%;
+	}
+}
+
+.inline-children {
+	text-align: center;
+	font-size: 0;
+	& > * {
+		display: inline-block;
+		font-size: @base-font-size;
 	}
 }
 
@@ -148,6 +165,27 @@
     background-color: fade(@color, @opamount);
 }
 
+.horz-back-grad(@left, @right) {
+  background: -webkit-linear-gradient(left, @left , @right); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, @left , @right); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, @left , @right); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, @left , @right); /* Standard syntax */
+}
+
+.background-color-fade(@color, @opamount) {
+    background-color: @color;
+    background-color: fade(@color, @opamount);
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+
 
 @media (max-width: @container-width) {
 	.only-desktop {
@@ -155,10 +193,49 @@
 	}
 }
 
-@media (max-width: @tablet-width) {
-	.tablet-or-bigger {
-		display: none;
+.desktop(@rules) {
+	.ie6, ie7, ie8, {
+		@rules();
+	}
+	
+	@media(min-width: @container-width) {
+		@rules();
 	}
 }
+
+.tablet(@rules) {
+	.ie6, ie7, ie8, {
+		@rules();
+	}
+	
+	@media(min-width: @tablet-width) {
+		@rules();
+	}
+}
+
+.primative(@rules) {
+	.ie6, ie7, ie8, {
+		@rules();
+	}
+}
+
+.tablet-and-smaller(@rules) {
+    @media (max-width: @tablet-width) {
+        @rules();
+    }
+}
+
+.big-phone-and-smaller(@rules) {
+    @media (max-width: @big-phone-width) {
+        @rules();
+    }
+}
+
+.big-phone-and-smaller({
+    .too-big-for-phone {
+        display: none;
+    }
+});
+
 
 

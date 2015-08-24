@@ -424,10 +424,59 @@ th {
   padding: 0;
 }
 
+/*
+ * The base font size which makes the chosen font match photoshop.
+ * For Open Sans this is 7.1pt, for Source Sans Pro this is 7.6pt 
+ */
+.source-sans-pro {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  text-decoration: none;
+  font-size: inherit;
+  color: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  font-family: inherit;
+}
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover {
+  text-decoration: underline;
+}
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 7.6pt;
+  color: #444444;
+}
 .container {
-  width: 960px;
-  margin: auto;
   max-width: 100%;
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.container .ie6,
+.container ie7,
+.container ie8 {
+  width: 960px;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (min-width: 960px) {
+  .container {
+    width: 960px;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 .relative {
   position: relative;
@@ -492,6 +541,14 @@ th {
   width: 100%;
   max-width: 100%;
 }
+.inline-children {
+  text-align: center;
+  font-size: 0;
+}
+.inline-children > * {
+  display: inline-block;
+  font-size: 7.6pt;
+}
 .top-up {
   vertical-align: top;
 }
@@ -510,13 +567,145 @@ th {
 .clear {
   clear: both;
 }
+.clear-inner:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.smaller {
+  font-size: 75%;
+}
+.bigger {
+  font-size: 125%;
+}
+.menu-link {
+  text-decoration: none;
+}
+.menu-link:hover {
+  text-decoration: underline;
+}
+.link-inherit a {
+  text-decoration: none;
+  font-size: inherit;
+  color: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  font-family: inherit;
+}
+.link-inherit a:hover {
+  text-decoration: underline;
+}
+.v-center {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  -o-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  transform: translateY(50%);
+}
+.v-h-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.nowrap {
+  white-space: nowrap;
+}
 @media (max-width: 960px) {
   .only-desktop {
     display: none;
   }
 }
-@media (max-width: 800px) {
-  .tablet-or-bigger {
+@media (max-width: 650px) {
+  .too-big-for-phone {
     display: none;
+  }
+}
+@media (max-width: 800px) {
+  .ei-default-menu {
+    text-align: left;
+  }
+  .ei-default-menu:before {
+    content: '\2630';
+    display: block;
+    padding-right: 20px;
+    font-size: 200%;
+    margin-right: 0;
+    margin-top: -2px;
+    -webkit-transition: margin-right 0.3s;
+    -moz-transition: margin-right 0.3s;
+    -o-transition: margin-right 0.3s;
+    transition: margin-right 0.3s;
+  }
+  .ei-default-menu ul {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    padding-left: 0;
+    z-index: 3;
+    -webkit-transition: width 0.3s;
+    -moz-transition: width 0.3s;
+    -o-transition: width 0.3s;
+    transition: width 0.3s;
+  }
+  .ei-default-menu ul li {
+    display: block;
+    padding-left: 0;
+  }
+  .ei-default-menu ul li:before {
+    display: none;
+  }
+  .ei-default-menu.open:before {
+    margin-right: 250px;
+  }
+  .ei-default-menu.open:after {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .ei-default-menu.open ul {
+    width: 250px;
+  }
+}
+.ie6 .ei-default-menu,
+ie7 .ei-default-menu,
+ie8 .ei-default-menu {
+  text-align: left;
+}
+.ie6 .ei-default-menu ul,
+ie7 .ei-default-menu ul,
+ie8 .ei-default-menu ul {
+  padding-left: 0;
+}
+.ie6 .ei-default-menu ul li,
+ie7 .ei-default-menu ul li,
+ie8 .ei-default-menu ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+@media (min-width: 960px) {
+  .ei-default-menu {
+    text-align: left;
+  }
+  .ei-default-menu ul {
+    padding-left: 0;
+  }
+  .ei-default-menu ul li {
+    display: inline-block;
+    margin-right: 10px;
   }
 }

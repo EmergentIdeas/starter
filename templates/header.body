@@ -2,11 +2,10 @@ __::includes__
 __pageIsEditable::page-editor/editable__
 <header class="navbar navbar-default" role="navigation">
         <div class="container">
-                <div class="navbar-header"><a class="navbar-brand">Starter</a></div>
-                <div class="nav">
+                
+                <div class="nav ei-default-menu">
                         __::menu__
                 </div>
         </div>
 </header>
-<div class="container">
 

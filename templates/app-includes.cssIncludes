@@ -1,2 +1,4 @@
 __vrsc__/bootstrap/css/bootstrap.css
+__vrsc__/jquery-ui/css/smoothness/jquery-ui-1.10.3.custom.css
+__vrsc__/css/crud_tools.css
 /css/app.css

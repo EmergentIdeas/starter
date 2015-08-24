@@ -1,0 +1,64 @@
+.tablet-and-smaller({
+	.ei-default-menu {
+		text-align: left;
+		&:before {
+			content: '\2630';
+			display: block;
+			padding-right: 20px;
+			font-size: 200%;
+			margin-right: 0;
+			margin-top: -2px;
+			.transition(margin-right .3s);
+		}
+		ul {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			width: 0;
+			padding-left: 0;
+			z-index: 3;
+	
+			.transition(width .3s);
+	
+			li {
+				display: block;
+				padding-left: 0;
+	
+				&:before {
+					display: none;
+				}
+			}
+		}
+	
+		&.open {
+			&:before {
+				margin-right: 250px;
+			}
+			&:after {
+				content: '';
+				position: fixed;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}
+			ul {
+				width: 250px;
+			}
+		}
+	}
+});
+
+.desktop({
+	.ei-default-menu {
+		text-align: left;
+		ul {
+			padding-left: 0;
+			li {
+				display: inline-block;
+				margin-right: 10px;
+			}
+		}
+	}
+});
