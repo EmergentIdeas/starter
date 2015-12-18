@@ -1,0 +1,10 @@
+<div class="linear preview-img" data-img-path="img/board-pic">
+	<label class="control-label" for="picUrl">Normal picture</label>
+	<input type="hidden" id="picUrl" placeholder="" name="picUrl" />
+	<div class="chosen-img" id="picUrl-img">
+		__!empty(picUrl)??picUrl::mgmt/referenced-images/current-img__
+		__empty(picUrl)??::mgmt/referenced-images/empty-img__
+	</div>
+	<br/>
+	<button type="button" class="btn">Select Image</button>
+</div>

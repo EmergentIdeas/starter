@@ -1,0 +1,17 @@
+#!/bin/bash
+newerless=`find . -cnewer static_content/css/pages.css -name '*.less'`
+if [ ${#newerless} -ne 0 ] 
+then
+	echo 'building less'
+	lessc static_content/css/pages.less > static_content/css/pages.css
+fi
+
+newertemplates=`find static_content -cnewer static_content/js/template-content.js -name '*.templates'`
+if [ ${#newertemplates} -ne 0 ]
+then
+	echo 'building templates'
+	TEMPLATE_CONTENT=static_content/js/template-content.js
+	echo -n "var templateText = " > $TEMPLATE_CONTENT
+	python -c 'import json,sys; print json.dumps(sys.stdin.read())' < static_content/templates/page.templates >> $TEMPLATE_CONTENT
+	echo 'Tripartite.parseTemplateScript(templateText);' >> $TEMPLATE_CONTENT
+fi

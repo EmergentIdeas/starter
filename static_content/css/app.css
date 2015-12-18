@@ -1,1 +1,25 @@
 /* Styles for the application pages */
+.preview-img {
+	display: inline-block;
+	margin-right: 40px;
+  height: 271px;
+  width: 300px;
+  position: relative;
+  vertical-align: top;
+  margin-right: 2em;
+}
+
+.preview-img .chosen-img {
+	text-align: center;
+}
+
+.preview-img label {
+  display: block;
+  text-align: center;
+}
+
+.preview-img button {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
