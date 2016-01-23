@@ -3,3 +3,6 @@ ivylibs
 jetty
 util-bin
 *~
+dep-resources
+dep-templates
+configuration

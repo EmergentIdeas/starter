@@ -1,4 +1,4 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="base" default="prep" basedir=".">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="base" default="compile" basedir=".">
 	<description>
     </description>
 	<!-- set global properties for this build -->
@@ -12,6 +12,12 @@
 	<property name="whlibs" location="WEB-INF/lib" />
 	<property name="webinf" location="WEB-INF" />
 	<property name="jetty" location="jetty" />
+	
+	<!-- For deps -->
+	<property name="depTemplates"  location="dep-templates"/>
+	<property name="depResources"  location="dep-resources"/>
+	<property name="configuration"  location="configuration"/>
+	
 	
 	<ivy:settings file="settings.xml" />
 
@@ -32,18 +38,59 @@
 		<mkdir dir="${libs}" />
 		<mkdir dir="${templates}" />
 		<mkdir dir="${jetty}" />
+		<mkdir dir="${depTemplates}" />
+		<mkdir dir="${depResources}" />
+		<mkdir dir="${configuration}" />
 	</target>
 
+	<target name="deps" depends="init" >
+	  	<ivy:retrieve pattern="${ivylibs}/[artifact](-[classifier])-[revision].jar" type="jar" conf="appdep"/>
+	  	<ivy:retrieve pattern="${ivylibs}/[artifact](-[classifier])-[revision].jar" type="jar" conf="javabin"/>
+	  	
+		<ivy:retrieve pattern="${depResources}/[artifact](-[classifier])-[revision].zip" type="zip" conf="resources"/>
+		<unzip dest="${depResources}">
+		    <fileset dir="${depResources}">
+		        <include name="**/*.zip"/>
+		    </fileset>
+		</unzip>
+		<delete >
+		    <fileset dir="${depResources}" includes="**/*.zip"/>
+		</delete>
+		
+	  	<ivy:retrieve pattern="${depTemplates}/[artifact](-[classifier])-[revision].zip" type="zip" conf="templates"/>
+		<unzip dest="${depTemplates}">
+		    <fileset dir="${depTemplates}">
+		        <include name="**/*.zip"/>
+		    </fileset>
+		</unzip>
+		<delete >
+		    <fileset dir="${depTemplates}" includes="**/*.zip"/>
+		</delete>
+		
+	  	<ivy:retrieve pattern="${configuration}/[artifact](-[classifier])-[revision].zip" type="zip" conf="configuration"/>
+		<unzip dest="${configuration}">
+		    <fileset dir="${configuration}">
+		        <include name="**/*.zip"/>
+		    </fileset>
+		</unzip>
+		<delete >
+		    <fileset dir="${configuration}" includes="**/*.zip"/>
+		</delete>
+	</target>
+	
 	<target name="compile" depends="init" description="compile the source" >
 		
 		<ivy:cachepath pathid="ivy.cachepath.dep" conf="deployment"/>
 		<ivy:cachepath pathid="ivy.cachepath.build" conf="build"/>
-		<ivy:cachepath pathid="ivy.cachepath.appdep" conf="appdep"/>
+		<!--<ivy:cachepath pathid="ivy.cachepath.appdep" conf="appdep"/>-->
 
 		<path id="ivy.deps">
 			<path refid="ivy.cachepath.dep" />
 			<path refid="ivy.cachepath.build" />
-			<path refid="ivy.cachepath.appdep" />
+			<!-- <path refid="ivy.cachepath.appdep" /> -->
+			<fileset dir="ivylibs" >
+				<include name="*.jar"/>
+			</fileset>
 			<fileset dir="lib" >
 				<include name="*.jar"/>
 			</fileset>
@@ -61,10 +108,6 @@
 		</copy>
 	</target>
 	
-	<target name="prep" depends="compile" >
-	  	<ivy:retrieve pattern="${ivylibs}/[artifact](-[classifier])-[revision].jar" type="jar" conf="appdep"/>
-	</target>
-
 	<target name="jetty-found" >
 		<available file="${jetty}/jetty-runner.jar"  property="jetty.found"/>
 	</target>
@@ -73,7 +116,7 @@
 	  	<get dest="${jetty}/jetty-runner.jar" src="http://repo2.maven.org/maven2/org/mortbay/jetty/jetty-runner/8.1.9.v20130131/jetty-runner-8.1.9.v20130131.jar"/>
 	</target>
 	
-	<target name="jetty" depends="prep,jetty-found,jetty-download" >
+	<target name="jetty" depends="deps,jetty-found,jetty-download" >
 	  	<ivy:retrieve pattern="webhandle.war" type="war" conf="war"/>
 		<unzip dest="." src="webhandle.war">
 		    <patternset>
@@ -128,6 +171,7 @@
 
 	<target name="run" >
 		<exec executable="java">
+			<arg value="-Xmx96m"/>
 			<arg value="-jar"/>
 			<arg value="jetty/jetty-runner.jar"/>
 			<arg value="."/>
@@ -148,5 +192,7 @@
 		<delete dir="${dist}"/>
 		<delete dir="${ivylibs}"/>
 		<delete dir="${whlibs}"/>
+		<delete dir="${depResources}"/>
+		<delete dir="${depTemplates}"/>
 	</target>
 </project>
