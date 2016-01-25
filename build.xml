@@ -46,6 +46,7 @@
 	<target name="deps" depends="init" >
 	  	<ivy:retrieve pattern="${ivylibs}/[artifact](-[classifier])-[revision].jar" type="jar" conf="appdep"/>
 	  	<ivy:retrieve pattern="${ivylibs}/[artifact](-[classifier])-[revision].jar" type="jar" conf="javabin"/>
+	  	<ivy:retrieve pattern="${ivylibs}/[artifact](-[classifier])-[revision].jar" type="jar" conf="deps"/>
 	  	
 		<ivy:retrieve pattern="${depResources}/[artifact](-[classifier])-[revision].zip" type="zip" conf="resources"/>
 		<unzip dest="${depResources}">

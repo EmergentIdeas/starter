@@ -11,17 +11,19 @@
 		<conf name="resources" />
 		<conf name="templates" />
 		<conf name="configuration" />
+		<conf name="deps" />
 		<conf name="sources" />
 	</configurations>
 	<dependencies>
     	<dependency org="com.emergentideas" name="webhandle" rev="latest.integration" conf="build" />	
     	<dependency org="com.emergentideas" name="webhandle" rev="latest.integration" conf="war" />	
 		<dependency org="com.emergentideas" name="oak_login" rev="latest.integration" conf="appdep" />
+		<dependency org="com.emergentideas" name="email_tools" rev="latest.integration" conf="javabin,sources,resources,templates,configuration,deps" />
 		<dependency org="com.emergentideas" name="page-editor" rev="latest.integration" conf="javabin,sources,resources,templates,configuration" />
 		<dependency org="com.emergentideas" name="tripartite-js" rev="latest.integration" conf="appdep" />
 		
 		<dependency org="com.emergentideas" name="entity-class-tools" rev="latest.integration" conf="test->appdep" />
-		<dependency org="org.jsoup" name="jsoup" rev="1.8.1" conf="appdep->default" force="true"/>
+		<dependency org="org.jsoup" name="jsoup" rev="1.8.1" conf="deps->default" force="true"/>
 		
 		<dependency org="org.eclipse.jetty" name="jetty-runner" rev="latest.integration" conf="jetty->*"/>
 	</dependencies>
