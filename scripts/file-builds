@@ -1,0 +1,22 @@
+#!/bin/bash
+newerless=`find . -cnewer static_content/css/pages.css -name '*.less'`
+if [ ${#newerless} -ne 0 ] 
+then
+	echo 'building less'
+	lessc static_content/css/pages.less > static_content/css/pages.css
+	lessc static_content/css/app.less > static_content/css/app.css
+fi
+
+newerjs=`find node -cnewer static_content/js/pages.js -name '*.js'`
+newertmpl=`find static_content/templates -cnewer static_content/js/pages.js -name '*.tmpl'`
+if [ ${#newerjs} -ne 0 ] || [ ${#newertmpl} -ne 0 ]
+then
+echo 'building js'
+cd node
+#node_modules/browserify/bin/cmd.js -d pages.js > ../static_content/js/pages.debug.js
+node_modules/browserify/bin/cmd.js pages.js > ../static_content/js/pages.js
+
+#node_modules/browserify/bin/cmd.js -d app.js > ../static_content/js/app.debug.js
+node_modules/browserify/bin/cmd.js app.js > ../static_content/js/app.js
+cd ..
+fi

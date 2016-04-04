@@ -17,6 +17,7 @@
 	<property name="depTemplates"  location="dep-templates"/>
 	<property name="depResources"  location="dep-resources"/>
 	<property name="configuration"  location="configuration"/>
+	<property name="node"  location="node"/>
 	
 	
 	<ivy:settings file="settings.xml" />
@@ -77,6 +78,9 @@
 		<delete >
 		    <fileset dir="${configuration}" includes="**/*.zip"/>
 		</delete>
+
+		<exec executable="scripts/install-js-deps">
+		</exec>
 	</target>
 	
 	<target name="compile" depends="init" description="compile the source" >
@@ -117,7 +121,21 @@
 	  	<get dest="${jetty}/jetty-runner.jar" src="http://repo2.maven.org/maven2/org/mortbay/jetty/jetty-runner/8.1.9.v20130131/jetty-runner-8.1.9.v20130131.jar"/>
 	</target>
 	
-	<target name="jetty" depends="deps,jetty-found,jetty-download" >
+
+	<target name="compile-client" >
+		
+		<exec executable="scripts/file-builds">
+		</exec>
+	</target>
+	<target name="minify" >
+		<exec executable="scripts/minify">
+		</exec>
+	</target>
+
+	<target name="release" depends="compile,compile-client,minify">
+	</target>
+
+	<target name="jetty" depends="deps,compile,compile-client,jetty-found,jetty-download" >
 	  	<ivy:retrieve pattern="webhandle.war" type="war" conf="war"/>
 		<unzip dest="." src="webhandle.war">
 		    <patternset>
@@ -131,43 +149,6 @@
 
 	<target name="dl-webhandle" >
 	  	<ivy:retrieve pattern="tmp/[artifact].[ext]" type="war" conf="war"/>
-	</target>
-	
-    <target name="lessstatus">
-    	<property name="upToDate" value="false" />
-        <uptodate property="upToDate" targetfile="${static}/css/pages.less">
-        	<srcfiles dir="${static}/css" includes="**/*.less"/>
-        </uptodate>
-    	<script language="javascript">
-    		<![CDATA[
-    	      	echo = project.createTask("echo");
-    	        echo.setMessage("test1");
-    	        echo.perform();
-    			upToDate = project.getProperty("upToDate");
-    			if("false".equals("" + upToDate)) {
-					project.setProperty("notUpToDate", true);
-    			}
-    			else {
-					project.setProperty("notUpToDate", false);
-    			}
-		        echo.setMessage("notUpToDate: " + project.getProperty("notUpToDate"));
-		        echo.perform();
-  		    ]]> 
-    	</script>
-    </target>
-    <target name="lesscompile" depends="lessstatus" if="${notUpToDate}">
-        <echo message="About to build less file"/>
-        <exec executable="lessc" output="${static}/css/pages.css">
-                <arg value="${static}/css/pages.less"/>
-        </exec>
-     </target>
-	<target name="backgrounds">
-		<exec executable="watch">
-            <arg value="-n"/>
-            <arg value="1"/>
-            <arg value="ant"/>
-            <arg value="lesscompile"/>
-		</exec>
 	</target>
 
 	<target name="run" >
@@ -195,5 +176,6 @@
 		<delete dir="${whlibs}"/>
 		<delete dir="${depResources}"/>
 		<delete dir="${depTemplates}"/>
+		<delete dir="${node}/node_modules"/>
 	</target>
 </project>
