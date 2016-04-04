@@ -1,0 +1,4 @@
+#!/bin/bash
+git remote rename origin starter
+git remote add origin $1
+git branch -u origin/master
