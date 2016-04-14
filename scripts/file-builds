@@ -3,7 +3,9 @@ newerless=`find . -cnewer static_content/css/pages.css -name '*.less'`
 if [ ${#newerless} -ne 0 ] 
 then
 	echo 'building less'
+	echo 'Pages css errors:' > css-build-errors.txt
 	lessc static_content/css/pages.less > static_content/css/pages.css
+	echo 'App errors:' >> css-build-errors.txt
 	lessc static_content/css/app.less > static_content/css/app.css
 fi
 

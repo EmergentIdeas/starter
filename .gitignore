@@ -3,6 +3,7 @@ ivylibs
 jetty
 util-bin
 *~
+css-build-errors.txt
 dep-resources
 dep-templates
 configuration
