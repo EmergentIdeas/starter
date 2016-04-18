@@ -4,9 +4,9 @@ if [ ${#newerless} -ne 0 ]
 then
 	echo 'building less'
 	echo 'Pages css errors:' > css-build-errors.txt
-	lessc static_content/css/pages.less > static_content/css/pages.css
+	lessc static_content/css/pages.less > static_content/css/pages.css 2>> css-build-errors.txt
 	echo 'App errors:' >> css-build-errors.txt
-	lessc static_content/css/app.less > static_content/css/app.css
+	lessc static_content/css/app.less > static_content/css/app.css 2>> css-build-errors.txt
 fi
 
 newerjs=`find node -cnewer static_content/js/pages.js -name '*.js'`
@@ -15,10 +15,10 @@ if [ ${#newerjs} -ne 0 ] || [ ${#newertmpl} -ne 0 ]
 then
 echo 'building js'
 cd node
-#node_modules/browserify/bin/cmd.js -d pages.js > ../static_content/js/pages.debug.js
+node_modules/browserify/bin/cmd.js -d pages.js > ../static_content/js/pages.debug.js 2> ../js-build-errors.txt
 node_modules/browserify/bin/cmd.js pages.js > ../static_content/js/pages.js
 
 #node_modules/browserify/bin/cmd.js -d app.js > ../static_content/js/app.debug.js
-node_modules/browserify/bin/cmd.js app.js > ../static_content/js/app.js
+node_modules/browserify/bin/cmd.js app.js > ../static_content/js/app.js 2>> ../js-build-errors.txt
 cd ..
 fi
