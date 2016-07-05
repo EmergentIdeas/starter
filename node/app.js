@@ -11,4 +11,7 @@ Tripartite.parseTemplateScript(templates)
 */
 require('crud-tools').allowItemsSort()
 
+require('page-editor')
+//require('site-events')
+
 

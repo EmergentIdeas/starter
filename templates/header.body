@@ -1,5 +1,6 @@
-__::includes__
 __pageIsEditable::page-editor/editable__
+__::includes__
+
 <header class="navbar navbar-default" role="navigation">
         <div class="container">
                 
