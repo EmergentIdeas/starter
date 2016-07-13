@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "jquery": "^1.12.2",
-    "jquery-ui": "latest",
+    "jquery-ui": "1.10.5",
     "bootstrap": "latest",
     "tripartite": "git+https://git@github.com/EmergentIdeas/tripartite.git"
   },
