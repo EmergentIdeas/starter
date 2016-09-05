@@ -8,4 +8,4 @@ var templates = require('../static_content/templates/pages.tmpl')
 Tripartite.parseTemplateScript(templates)
 */
 
-require('page-editor')
+require('page-editor').configure()
