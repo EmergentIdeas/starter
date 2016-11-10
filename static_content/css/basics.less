@@ -213,7 +213,9 @@
     white-space: nowrap;
 }
 
-
+.fs(@font-size) {
+	font-size: @base-font-size * @font-size / 10;
+}
 
 @media (max-width: @container-width) {
 	.only-desktop {

@@ -20,7 +20,7 @@
 		<dependency org="com.emergentideas" name="oak-std-templates" rev="[1.0,)" conf="templates" />
 		<dependency org="com.emergentideas" name="oak-login" rev="latest.integration" conf="javabin,sources,templates,configuration,deps" />
 		<dependency org="com.emergentideas" name="crud-tools" rev="latest.integration" conf="javabin,sources,resources,templates,configuration,deps" />
-		<dependency org="com.emergentideas" name="email_tools" rev="latest.integration" conf="javabin,sources,resources,templates,configuration,deps" />
+		<dependency org="com.emergentideas" name="email-tools-local" rev="latest.integration" conf="javabin,sources,resources,templates,configuration,deps" />
 		<dependency org="com.emergentideas" name="page-editor" rev="latest.integration" conf="javabin,sources,resources,templates,configuration" />
 
 		<dependency org="com.emergentideas" name="entity-class-tools" rev="latest.integration" conf="appdep" />
