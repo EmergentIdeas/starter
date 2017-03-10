@@ -12,13 +12,13 @@
     "jquery": "^1.12.2",
     "jquery-ui": "1.10.5",
     "bootstrap": "latest",
-    "tripartite": "git+https://git@github.com/EmergentIdeas/tripartite.git"
+    "tripartite": "latest"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "browserify": {
-    "transform": ["stringify"]
+    "transform": ["stringify", "tripartite/browserify-transform"]
   },
   "author": "",
   "license": "ISC"
